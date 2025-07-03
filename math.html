@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Worksheet</title>
     <style>
-        body { background: #add8e6; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        body { background: #add8e6; font-family: Arial, sans-serif; text-align: center; padding: 20px; position: relative; }
         .question { margin: 20px; font-size: 2.5em; }
-        input { width: 100px; font-size: 2em; text-align: center; }
+        input { width: 150px; font-size: 2em; text-align: center; }
         .feedback { font-size: 2em; margin-left: 10px; }
         .correct { color: green; }
         .incorrect { color: red; }
@@ -15,6 +15,9 @@
         #checkBtn { background-color: #4caf50; color: white; }
         #nextBtn { background-color: #2196f3; color: white; }
         .hidden { display: none; }
+        .range-buttons { position: absolute; bottom: 20px; right: 20px; }
+        .range-btn { margin-left: 10px; }
+        .range-btn.active { background-color: #ff9800; color: white; }
     </style>
 </head>
 <body>
@@ -24,20 +27,34 @@
     </div>
     <button id="checkBtn" onclick="checkAnswers()">Check Answers</button>
     <button id="nextBtn" class="hidden" onclick="nextPage()">Next Page</button>
+    <div class="range-buttons">
+        <button class="range-btn" onclick="setRange(20)">0-20</button>
+        <button class="range-btn active" onclick="setRange(100)">0-100</button>
+    </div>
 
     <script>
         let currentPage = 1;
         let questions = [];
+        let maxRange = 100;
+
+        function setRange(range) {
+            maxRange = range;
+            document.querySelectorAll('.range-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            generateQuestions();
+        }
 
         function generateQuestions() {
             questions = [];
             for (let i = 0; i < 2; i++) {
-                let num1 = Math.floor(Math.random() * 10) + 1;
-                let num2 = Math.floor(Math.random() * 10) + 1;
-                questions.push({ num1, num2, answer: num1 + num2, input: null, checked: false });
+                let num1 = Math.floor(Math.random() * (maxRange + 1));
+                let num2 = Math.floor(Math.random() * (maxRange + 1));
+                let operation = Math.random() < 0.5 ? '+' : '-';
+                let answer = operation === '+' ? num1 + num2 : Math.max(0, num1 - num2);
+                questions.push({ num1, num2, operation, answer, input: null, checked: false });
             }
-            document.getElementById('q1').innerHTML = `${questions[0].num1} + ${questions[0].num2} = <input type="number" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="ans1"> <span id="fb1" class="feedback"></span>`;
-            document.getElementById('q2').innerHTML = `${questions[1].num1} + ${questions[1].num2} = <input type="number" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="ans2"> <span id="fb2" class="feedback"></span>`;
+            document.getElementById('q1').innerHTML = `${questions[0].num1} ${questions[0].operation} ${questions[0].num2} = <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="ans1"> <span id="fb1" class="feedback"></span>`;
+            document.getElementById('q2').innerHTML = `${questions[1].num1} ${questions[1].operation} ${questions[1].num2} = <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="ans2"> <span id="fb2" class="feedback"></span>`;
             document.getElementById('checkBtn').classList.remove('hidden');
             document.getElementById('nextBtn').classList.add('hidden');
         }

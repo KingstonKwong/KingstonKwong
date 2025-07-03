@@ -28,21 +28,6 @@
       flex-direction: column;
       align-items: center;
     }
-    .word-img {
-      width: 180px;
-      height: 180px;
-      object-fit: contain;
-      border-radius: 18px;
-      background: #f8ffae;
-      box-shadow: 0 2px 10px #43c6ac33;
-      margin-bottom: 24px;
-      border: 2px solid #43c6ac44;
-      cursor: pointer;
-      transition: box-shadow 0.2s;
-    }
-    .word-img:hover {
-      box-shadow: 0 4px 20px #ffcb0580;
-    }
     .word {
       font-size: 2.2em;
       font-weight: 900;
@@ -50,32 +35,6 @@
       letter-spacing: 2px;
       margin-bottom: 10px;
       text-shadow: 0 2px 6px #fff7;
-    }
-    .chinese {
-      font-size: 1.5em;
-      color: #ff6f61;
-      margin-bottom: 24px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    .speak-btn {
-      background: linear-gradient(90deg, #43c6ac 60%, #ffcb05 100%);
-      color: #fff;
-      border: none;
-      border-radius: 16px;
-      padding: 14px 32px;
-      font-size: 1.2em;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 3px 12px rgba(67,198,172,0.15);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.2s;
-    }
-    .speak-btn:hover {
-      background: linear-gradient(90deg, #ff6f61 60%, #43c6ac 100%);
     }
     .next-btn {
       background: #ffcb05;
@@ -116,9 +75,7 @@
     }
     @media (max-width: 600px) {
       .container { padding: 16px 4vw; }
-      .word-img { width: 120px; height: 120px; }
       .word { font-size: 1.5em; }
-      .chinese { font-size: 1.1em; }
       .back-btn { padding: 10px 20px; font-size: 1em; left: 8px; bottom: 8px; }
     }
   </style>
@@ -126,145 +83,40 @@
 </head>
 <body>
   <div class="container">
-    <img id="img" class="word-img" src="" alt="Word image" title="Click for another image" onclick="refreshImage()" />
     <div id="word" class="word">Loading...</div>
-    <div id="chinese" class="chinese"></div>
-    <button class="speak-btn" onclick="playAudio()">🔊 Read</button>
     <button class="next-btn" onclick="nextWord()">Next</button>
   </div>
   <button class="back-btn" onclick="window.location.href='english.html'">Back</button>
   <script>
-    const PIXABAY_API_KEY = '51156726-a892553f5c5b08e75212aac04';
     let wordList = [];
     let currentIndex = 0;
-    let audioUrl = null;
-    let currentWord = '';
-    let currentCatId = null;
-    let imagePage = 1; // for refreshing image
-
-    // Example Chinese mapping (expand as needed)
-    const chineseMap = {
-      "apple": "蘋果",
-      "cat": "貓",
-      "dog": "狗",
-      "book": "書",
-      "pencil": "鉛筆",
-      "banana": "香蕉",
-      "fish": "魚",
-      "car": "車",
-      "bird": "鳥",
-      "chair": "椅子"
-      // Add more as needed
-    };
-
-    function getCatId() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('cat');
-    }
 
     async function loadWordList() {
-      currentCatId = getCatId();
+      const params = new URLSearchParams(window.location.search);
+      const catid = params.get('cat');
       const res = await fetch('eng.json');
       const allWords = await res.json();
-      // Filter by catid and remove duplicates and empty/false wordid
-      wordList = allWords.filter(w => String(w.catid) === String(currentCatId) && w.wordid && typeof w.wordid === 'string' && w.wordid.trim() !== '');
-      // Remove duplicates by wordid
-      const seen = {};
-      wordList = wordList.filter(w => {
-        if (seen[w.wordid]) return false;
-        seen[w.wordid] = true;
-        return true;
-      });
+      wordList = allWords.filter(w => String(w.catid) === String(catid));
       if (wordList.length === 0) {
         document.getElementById('word').textContent = "No words for this category";
-        document.getElementById('chinese').textContent = "";
-        document.getElementById('img').src = "";
         return;
       }
-      currentIndex = Math.floor(Math.random() * wordList.length);
-      displayWord(currentIndex);
+      currentIndex = 0;
+      showWord(currentIndex);
     }
 
-    function getCleanWord(word) {
-      // Remove trailing numbers and extra spaces, e.g., "bat 2" => "bat"
-      return word.replace(/\s*\d+$/, '').trim();
-    }
-
-    async function fetchImage(word, page = 1) {
-      // Use page as a randomizer for different images
-      const cleanWord = getCleanWord(word);
-      const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(cleanWord)}&image_type=photo&safesearch=true&per_page=3&page=${page}`;
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        if (data.hits && data.hits.length > 0) {
-          // Pick a random image from available hits
-          const img = data.hits[Math.floor(Math.random() * data.hits.length)];
-          return img.webformatURL;
-        }
-      } catch (e) {}
-      // fallback
-      return 'https://cdn.pixabay.com/photo/2017/01/31/13/14/apple-2023404_1280.png';
-    }
-
-    async function displayWord(idx) {
-      imagePage = 1;
+    function showWord(idx) {
+      if (!wordList.length) return;
       const wordObj = wordList[idx];
-      if (!wordObj) return;
-      currentWord = wordObj.wordid;
-      const cleanWord = getCleanWord(currentWord);
-      document.getElementById('word').textContent = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1);
-      document.getElementById('chinese').textContent = chineseMap[cleanWord.toLowerCase()] || "";
-
-      // Load image
-      const imgUrl = await fetchImage(currentWord, imagePage);
-      document.getElementById('img').src = imgUrl;
-      document.getElementById('img').alt = cleanWord;
-
-      // Fetch pronunciation audio from Free Dictionary API
-      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${cleanWord}`)
-        .then(res => res.json())
-        .then(data => {
-          const phonetics = data[0]?.phonetics || [];
-          const audioObj = phonetics.find(p => p.audio);
-          audioUrl = audioObj ? audioObj.audio : null;
-        })
-        .catch(() => { audioUrl = null; });
-    }
-
-    function playAudio() {
-      if (audioUrl) {
-        const audio = new Audio(audioUrl.startsWith('http') ? audioUrl : 'https:' + audioUrl);
-        audio.play();
-      } else {
-        // fallback: use browser TTS
-        const word = document.getElementById('word').textContent;
-        if ('speechSynthesis' in window) {
-          const utter = new SpeechSynthesisUtterance(word);
-          utter.lang = 'en-US';
-          window.speechSynthesis.speak(utter);
-        }
-      }
+      document.getElementById('word').textContent = wordObj.wordid;
     }
 
     function nextWord() {
       if (!wordList.length) return;
-      let nextIdx;
-      do {
-        nextIdx = Math.floor(Math.random() * wordList.length);
-      } while (nextIdx === currentIndex && wordList.length > 1);
-      currentIndex = nextIdx;
-      displayWord(currentIndex);
+      currentIndex = (currentIndex + 1) % wordList.length;
+      showWord(currentIndex);
     }
 
-    async function refreshImage() {
-      // Get another image for the same word by changing the page parameter
-      imagePage++;
-      const imgUrl = await fetchImage(currentWord, imagePage);
-      document.getElementById('img').src = imgUrl;
-    }
-
-    // On page load
     loadWordList();
   </script>
 </body>

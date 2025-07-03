@@ -1,4 +1,67 @@
-<html>
-
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            background: #add8e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            width: 250px;
+            height: 150px;
+            margin: 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 2em;
+            line-height: 150px;
+            text-align: center;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+        }
+        .chinese {
+            background-color: #f44336;
+        }
+        .english {
+            background-color: #2196f3;
+        }
+        .math {
+            background-color: #4caf50;
+        }
+        @media (max-width: 768px) {
+            .button {
+                width: 200px;
+                height: 120px;
+                font-size: 1.5em;
+                line-height: 120px;
+                margin: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="chinese.html" class="button chinese">Chinese</a>
+        <a href="english.html" class="button english">English</a>
+        <a href="math.html" class="button math">Math</a>
+    </div>
+</body>
 </html>

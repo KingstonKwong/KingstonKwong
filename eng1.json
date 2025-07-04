@@ -20871,625 +20871,625 @@
     "catid": 25,
     "id": 27,
     "wordid": "aeroplane",
-    "cwordid": "美妙  "
+    "cwordid": "飛機  "
   },
   {
     "catid": 25,
     "id": 68,
     "wordid": "ambulance",
-    "cwordid": "飛機  "
+    "cwordid": "救護車  "
   },
   {
     "catid": 25,
     "id": 110,
     "wordid": "arrive",
-    "cwordid": "救護車  "
+    "cwordid": "抵達  "
   },
   {
     "catid": 25,
     "id": 255,
     "wordid": "bicycle",
-    "cwordid": "抵達  "
+    "cwordid": "自行車  "
   },
   {
     "catid": 25,
     "id": 293,
     "wordid": "boat",
-    "cwordid": "自行車  "
+    "cwordid": "船  "
   },
   {
     "catid": 25,
     "id": 376,
     "wordid": "bus",
-    "cwordid": "船  "
+    "cwordid": "巴士  "
   },
   {
     "catid": 25,
     "id": 381,
     "wordid": "busy",
-    "cwordid": "巴士  "
+    "cwordid": "忙碌  "
   },
   {
     "catid": 25,
     "id": 427,
     "wordid": "car",
-    "cwordid": "忙碌  "
+    "cwordid": "汽車  "
   },
   {
     "catid": 25,
     "id": 436,
     "wordid": "careful",
-    "cwordid": "汽車  "
+    "cwordid": "小心  "
   },
   {
     "catid": 25,
     "id": 453,
     "wordid": "catch",
-    "cwordid": "小心  "
+    "cwordid": "抓住  "
   },
   {
     "catid": 25,
     "id": 578,
     "wordid": "coach 1",
-    "cwordid": "抓住  "
+    "cwordid": "教練  "
   },
   {
     "catid": 25,
     "id": 615,
     "wordid": "come",
-    "cwordid": "教練  "
+    "cwordid": "來  "
   },
   {
     "catid": 25,
     "id": 620,
     "wordid": "comfortable",
-    "cwordid": "來  "
+    "cwordid": "舒適  "
   },
   {
     "catid": 25,
     "id": 655,
     "wordid": "convenient",
-    "cwordid": "舒適  "
+    "cwordid": "方便  "
   },
   {
     "catid": 25,
     "id": 720,
     "wordid": "cross 1",
-    "cwordid": "方便  "
+    "cwordid": "穿越  "
   },
   {
     "catid": 25,
     "id": 724,
     "wordid": "crowded",
-    "cwordid": "穿越  "
+    "cwordid": "擁擠  "
   },
   {
     "catid": 25,
     "id": 778,
     "wordid": "dangerous",
-    "cwordid": "擁擠  "
+    "cwordid": "危險  "
   },
   {
     "catid": 25,
     "id": 928,
     "wordid": "drive",
-    "cwordid": "危險  "
+    "cwordid": "駕駛  "
   },
   {
     "catid": 25,
     "id": 990,
     "wordid": "empty",
-    "cwordid": "駕駛  "
+    "cwordid": "空的  "
   },
   {
     "catid": 25,
     "id": 1067,
     "wordid": "express 1",
-    "cwordid": "空的  "
+    "cwordid": "快遞  "
   },
   {
     "catid": 25,
     "id": 1109,
     "wordid": "fare",
-    "cwordid": "快遞  "
+    "cwordid": "票價  "
   },
   {
     "catid": 25,
     "id": 1117,
     "wordid": "fast",
-    "cwordid": "票價  "
+    "cwordid": "快  "
   },
   {
     "catid": 25,
     "id": 1122,
     "wordid": "fasten",
-    "cwordid": "快  "
+    "cwordid": "固定  "
   },
   {
     "catid": 25,
     "id": 1146,
     "wordid": "ferry",
-    "cwordid": "固定  "
+    "cwordid": "渡輪  "
   },
   {
     "catid": 25,
     "id": 1000,
     "wordid": "fire engine",
-    "cwordid": "渡輪  "
+    "cwordid": "消防車  "
   },
   {
     "catid": 25,
     "id": 1188,
     "wordid": "fix",
-    "cwordid": "消防車  "
+    "cwordid": "修理  "
   },
   {
     "catid": 25,
     "id": 1209,
     "wordid": "flyover",
-    "cwordid": "修理  "
+    "cwordid": "高架橋  "
   },
   {
     "catid": 25,
     "id": 1218,
     "wordid": "follow",
-    "cwordid": "高架橋  "
+    "cwordid": "跟隨  "
   },
   {
     "catid": 25,
     "id": 1229,
     "wordid": "footbridge",
-    "cwordid": "跟隨  "
+    "cwordid": "人行天橋  "
   },
   {
     "catid": 25,
     "id": 1279,
     "wordid": "full",
-    "cwordid": "人行天橋  "
+    "cwordid": "滿的  "
   },
   {
     "catid": 25,
     "id": 1326,
     "wordid": "go",
-    "cwordid": "滿的  "
+    "cwordid": "去  "
   },
   {
     "catid": 25,
     "id": 1415,
     "wordid": "handrail",
-    "cwordid": "去  "
+    "cwordid": "扶手  "
   },
   {
     "catid": 25,
     "id": 1469,
     "wordid": "helicopter",
-    "cwordid": "扶手  "
+    "cwordid": "直升機  "
   },
   {
     "catid": 25,
     "id": 1493,
     "wordid": "highway",
-    "cwordid": "直升機  "
+    "cwordid": "高速公路  "
   },
   {
     "catid": 25,
     "id": 1614,
     "wordid": "international",
-    "cwordid": "高速公路  "
+    "cwordid": "國際  "
   },
   {
     "catid": 25,
     "id": 1742,
     "wordid": "leave",
-    "cwordid": "國際  "
+    "cwordid": "離開  "
   },
   {
     "catid": 25,
     "id": 1787,
     "wordid": "line up",
-    "cwordid": "離開  "
+    "cwordid": "排隊  "
   },
   {
     "catid": 25,
     "id": 1811,
     "wordid": "local",
-    "cwordid": "排隊  "
+    "cwordid": "本地  "
   },
   {
     "catid": 25,
     "id": 1820,
     "wordid": "lorry",
-    "cwordid": "本地  "
+    "cwordid": "貨車  "
   },
   {
     "catid": 25,
     "id": 1947,
     "wordid": "mind 2",
-    "cwordid": "貨車  "
+    "cwordid": "注意  "
   },
   {
     "catid": 25,
     "id": 1950,
     "wordid": "minibus",
-    "cwordid": "注意  "
+    "cwordid": "小型巴士  "
   },
   {
     "catid": 25,
     "id": 1958,
     "wordid": "miss 3",
-    "cwordid": "小型巴士  "
+    "cwordid": "錯過  "
   },
   {
     "catid": 25,
     "id": 1989,
     "wordid": "motorcycle",
-    "cwordid": "錯過  "
+    "cwordid": "摩托車  "
   },
   {
     "catid": 25,
     "id": 2059,
     "wordid": "new",
-    "cwordid": "摩托車  "
+    "cwordid": "新的  "
   },
   {
     "catid": 25,
     "id": 2089,
     "wordid": "noisy",
-    "cwordid": "新的  "
+    "cwordid": "吵鬧  "
   },
   {
     "catid": 25,
     "id": 2136,
     "wordid": "old",
-    "cwordid": "吵鬧  "
+    "cwordid": "舊的  "
   },
   {
     "catid": 25,
     "id": 2224,
     "wordid": "passenger",
-    "cwordid": "舊的  "
+    "cwordid": "乘客  "
   },
   {
     "catid": 25,
     "id": 2236,
     "wordid": "pavement",
-    "cwordid": "乘客  "
+    "cwordid": "人行道  "
   },
   {
     "catid": 25,
     "id": 2246,
     "wordid": "pedestrian",
-    "cwordid": "人行道  "
+    "cwordid": "行人  "
   },
   {
     "catid": 25,
     "id": 2417,
     "wordid": "private",
-    "cwordid": "行人  "
+    "cwordid": "私人的  "
   },
   {
     "catid": 25,
     "id": 2465,
     "wordid": "queue",
-    "cwordid": "私人的  "
+    "cwordid": "排隊  "
   },
   {
     "catid": 25,
     "id": 2470,
     "wordid": "quick",
-    "cwordid": "排隊  "
+    "cwordid": "快速  "
   },
   {
     "catid": 25,
     "id": 2483,
     "wordid": "railway",
-    "cwordid": "快速  "
+    "cwordid": "鐵路  "
   },
   {
     "catid": 25,
     "id": 2542,
     "wordid": "repair",
-    "cwordid": "鐵路  "
+    "cwordid": "修理  "
   },
   {
     "catid": 25,
     "id": 2559,
     "wordid": "responsible",
-    "cwordid": "修理  "
+    "cwordid": "負責  "
   },
   {
     "catid": 25,
     "id": 2576,
     "wordid": "ride",
-    "cwordid": "負責  "
+    "cwordid": "騎  "
   },
   {
     "catid": 25,
     "id": 2588,
     "wordid": "road",
-    "cwordid": "騎  "
+    "cwordid": "道路  "
   },
   {
     "catid": 25,
     "id": 2599,
     "wordid": "rocket",
-    "cwordid": "道路  "
+    "cwordid": "火箭  "
   },
   {
     "catid": 25,
     "id": 2623,
     "wordid": "row 2",
-    "cwordid": "火箭  "
+    "cwordid": "排  "
   },
   {
     "catid": 25,
     "id": 2632,
     "wordid": "rule",
-    "cwordid": "排  "
+    "cwordid": "規則  "
   },
   {
     "catid": 25,
     "id": 2644,
     "wordid": "safe 1",
-    "cwordid": "規則  "
+    "cwordid": "安全  "
   },
   {
     "catid": 25,
     "id": 247,
     "wordid": "seat belt",
-    "cwordid": "安全  "
+    "cwordid": "安全帶  "
   },
   {
     "catid": 25,
     "id": 2774,
     "wordid": "ship",
-    "cwordid": "安全帶  "
+    "cwordid": "船  "
   },
   {
     "catid": 25,
     "id": 2813,
     "wordid": "sign 2",
-    "cwordid": "船  "
+    "cwordid": "標誌  "
   },
   {
     "catid": 25,
     "id": 2886,
     "wordid": "slow",
-    "cwordid": "標誌  "
+    "cwordid": "慢  "
   },
   {
     "catid": 25,
     "id": 2963,
     "wordid": "spaceship",
-    "cwordid": "慢  "
+    "cwordid": "太空船  "
   },
   {
     "catid": 25,
     "id": 3063,
     "wordid": "stop 1",
-    "cwordid": "太空船  "
+    "cwordid": "停  "
   },
   {
     "catid": 25,
     "id": 3075,
     "wordid": "straight",
-    "cwordid": "停  "
+    "cwordid": "直的  "
   },
   {
     "catid": 25,
     "id": 3111,
     "wordid": "subway",
-    "cwordid": "直的  "
+    "cwordid": "地鐵  "
   },
   {
     "catid": 25,
     "id": 3192,
     "wordid": "take",
-    "cwordid": "地鐵  "
+    "cwordid": "拿  "
   },
   {
     "catid": 25,
     "id": 3210,
     "wordid": "taxi",
-    "cwordid": "拿  "
+    "cwordid": "計程車  "
   },
   {
     "catid": 25,
     "id": 3345,
     "wordid": "traffic",
-    "cwordid": "計程車  "
+    "cwordid": "交通  "
   },
   {
     "catid": 25,
     "id": 1638,
     "wordid": "traffic jam 2",
-    "cwordid": "交通  "
+    "cwordid": "交通堵塞  "
   },
   {
     "catid": 25,
     "id": 3346,
     "wordid": "train",
-    "cwordid": "交通堵塞  "
+    "cwordid": "火車  "
   },
   {
     "catid": 25,
     "id": 3347,
     "wordid": "tram",
-    "cwordid": "火車  "
+    "cwordid": "電車  "
   },
   {
     "catid": 25,
     "id": 3348,
     "wordid": "transport",
-    "cwordid": "電車  "
+    "cwordid": "運輸  "
   },
   {
     "catid": 25,
     "id": 3351,
     "wordid": "travel",
-    "cwordid": "運輸  "
+    "cwordid": "旅行  "
   },
   {
     "catid": 25,
     "id": 3748,
     "wordid": "truck",
-    "cwordid": "旅行  "
+    "cwordid": "卡車  "
   },
   {
     "catid": 25,
     "id": 3374,
     "wordid": "tunnel",
-    "cwordid": "卡車  "
+    "cwordid": "隧道  "
   },
   {
     "catid": 25,
     "id": 3423,
     "wordid": "van",
-    "cwordid": "隧道  "
+    "cwordid": "廂型車  "
   },
   {
     "catid": 25,
     "id": 3426,
     "wordid": "vehicle",
-    "cwordid": "廂型車  "
+    "cwordid": "車輛  "
   },
   {
     "catid": 25,
     "id": 3446,
     "wordid": "wait",
-    "cwordid": "車輛  "
+    "cwordid": "等待  "
   },
   {
     "catid": 25,
     "id": 3521,
     "wordid": "wheel",
-    "cwordid": "等待  "
+    "cwordid": "車輪  "
   },
   {
     "catid": 25,
     "id": 3624,
     "wordid": "zebra crossing",
-    "cwordid": "車輪  "
+    "cwordid": "斑馬線  "
   },
   {
     "catid": 26,
     "id": 1,
     "wordid": "a",
-    "cwordid": "斑馬線  "
+    "cwordid": "一  "
   },
   {
     "catid": 26,
     "id": 266,
     "wordid": "a bit of",
-    "cwordid": "一  "
+    "cwordid": "一點  "
   },
   {
     "catid": 26,
     "id": 1824,
     "wordid": "a lot of",
-    "cwordid": "一點  "
+    "cwordid": "很多  "
   },
   {
     "catid": 26,
     "id": 3758,
     "wordid": "a number of",
-    "cwordid": "很多  "
+    "cwordid": "一些  "
   },
   {
     "catid": 26,
     "id": 4,
     "wordid": "about",
-    "cwordid": "一些  "
+    "cwordid": "關於  "
   },
   {
     "catid": 26,
     "id": 5,
     "wordid": "above",
-    "cwordid": "關於  "
+    "cwordid": "以上  "
   },
   {
     "catid": 26,
     "id": 10,
     "wordid": "across",
-    "cwordid": "以上  "
+    "cwordid": "穿越  "
   },
   {
     "catid": 26,
     "id": 3690,
     "wordid": "adjective",
-    "cwordid": "穿越  "
+    "cwordid": "形容詞  "
   },
   {
     "catid": 26,
     "id": 3691,
     "wordid": "adverb",
-    "cwordid": "形容詞  "
+    "cwordid": "副詞  "
   },
   {
     "catid": 26,
     "id": 31,
     "wordid": "after",
-    "cwordid": "副詞  "
+    "cwordid": "之後  "
   },
   {
     "catid": 26,
     "id": 34,
     "wordid": "against",
-    "cwordid": "之後  "
+    "cwordid": "反對  "
   },
   {
     "catid": 26,
     "id": 45,
     "wordid": "all",
-    "cwordid": "反對  "
+    "cwordid": "所有  "
   },
   {
     "catid": 26,
     "id": 50,
     "wordid": "along",
-    "cwordid": "所有  "
+    "cwordid": "沿著  "
   },
   {
     "catid": 26,
     "id": 55,
     "wordid": "also",
-    "cwordid": "沿著  "
+    "cwordid": "也  "
   },
   {
     "catid": 26,
     "id": 56,
     "wordid": "although",
-    "cwordid": "也  "
+    "cwordid": "雖然  "
   },
   {
     "catid": 26,
     "id": 69,
     "wordid": "among",
-    "cwordid": "雖然  "
+    "cwordid": "在...之中  "
   },
   {
     "catid": 26,
     "id": 78,
     "wordid": "and",
-    "cwordid": "在...之中  "
+    "cwordid": "和  "
   },
   {
     "catid": 26,
     "id": 86,
     "wordid": "another",
-    "cwordid": "和  "
+    "cwordid": "另一個  "
   },
   {
     "catid": 26,
     "id": 91,
     "wordid": "any",
-    "cwordid": "另一個  "
+    "cwordid": "任何  "
   },
   {
     "catid": 26,
     "id": 92,
     "wordid": "anybody",
-    "cwordid": "任何  "
+    "cwordid": "任何人  "
   },
   {
     "catid": 26,
@@ -21501,133 +21501,133 @@
     "catid": 26,
     "id": 94,
     "wordid": "anything",
-    "cwordid": "任何人  "
+    "cwordid": "任何事  "
   },
   {
     "catid": 26,
     "id": 103,
     "wordid": "around",
-    "cwordid": "任何事  "
+    "cwordid": "周圍  "
   },
   {
     "catid": 26,
     "id": 3694,
     "wordid": "article 2",
-    "cwordid": "周圍  "
+    "cwordid": "文章  "
   },
   {
     "catid": 26,
     "id": 115,
     "wordid": "as",
-    "cwordid": "文章  "
+    "cwordid": "作為  "
   },
   {
     "catid": 26,
     "id": 125,
     "wordid": "at",
-    "cwordid": "作為  "
+    "cwordid": "在  "
   },
   {
     "catid": 26,
     "id": 154,
     "wordid": "away",
-    "cwordid": "在  "
+    "cwordid": "離開  "
   },
   {
     "catid": 26,
     "id": 156,
     "wordid": "back 1",
-    "cwordid": "離開  "
+    "cwordid": "回來  "
   },
   {
     "catid": 26,
     "id": 206,
     "wordid": "be",
-    "cwordid": "回來  "
+    "cwordid": "是  "
   },
   {
     "catid": 26,
     "id": 226,
     "wordid": "because",
-    "cwordid": "是  "
+    "cwordid": "因為  "
   },
   {
     "catid": 26,
     "id": 232,
     "wordid": "before",
-    "cwordid": "因為  "
+    "cwordid": "之前  "
   },
   {
     "catid": 26,
     "id": 240,
     "wordid": "behind",
-    "cwordid": "之前  "
+    "cwordid": "在...後面  "
   },
   {
     "catid": 26,
     "id": 245,
     "wordid": "below",
-    "cwordid": "在...後面  "
+    "cwordid": "下面  "
   },
   {
     "catid": 26,
     "id": 250,
     "wordid": "beneath",
-    "cwordid": "下面  "
+    "cwordid": "在...之下  "
   },
   {
     "catid": 26,
     "id": 252,
     "wordid": "beside",
-    "cwordid": "在...之下  "
+    "cwordid": "在...旁邊  "
   },
   {
     "catid": 26,
     "id": 253,
     "wordid": "between",
-    "cwordid": "在...旁邊  "
+    "cwordid": "在...之間  "
   },
   {
     "catid": 26,
     "id": 315,
     "wordid": "both",
-    "cwordid": "在...之間  "
+    "cwordid": "兩者都  "
   },
   {
     "catid": 26,
     "id": 382,
     "wordid": "but",
-    "cwordid": "兩者都  "
+    "cwordid": "但是  "
   },
   {
     "catid": 26,
     "id": 396,
     "wordid": "by",
-    "cwordid": "但是  "
+    "cwordid": "由  "
   },
   {
     "catid": 26,
     "id": 416,
     "wordid": "can 1",
-    "cwordid": "由  "
+    "cwordid": "可以  "
   },
   {
     "catid": 26,
     "id": 3633,
     "wordid": "comma",
-    "cwordid": "可以  "
+    "cwordid": "逗號  "
   },
   {
     "catid": 26,
     "id": 685,
     "wordid": "could",
-    "cwordid": "逗號  "
+    "cwordid": "能夠  "
   },
   {
     "catid": 26,
     "id": 3700,
     "wordid": "countable",
-    "cwordid": "能夠  "
+    "cwordid": "可數"
   },
   {
     "catid": 26,

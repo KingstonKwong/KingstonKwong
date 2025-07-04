@@ -3,107 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <title>P1 English Word Trainer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <style>
-    body {
-      font-family: 'Baloo 2', 'Comic Sans MS', Arial, sans-serif;
-      background: linear-gradient(120deg, #f8ffae 0%, #43c6ac 100%);
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+      font-family: 'Baloo 2', 'Comic Sans MS', Arial, sans-serif;
+    }
+    body {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      position: relative;
+      align-items: stretch;
+      justify-content: stretch;
+      box-sizing: border-box;
     }
     .container {
-      background: #fffbe7cc;
-      border-radius: 24px;
-      box-shadow: 0 4px 24px rgba(60,60,60,0.10);
-      padding: 32px 24px 24px 24px;
-      margin-top: 40px;
-      width: 95vw;
-      max-width: 420px;
+      flex: 1 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: 0;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      box-sizing: border-box;
     }
     .word-img {
-      width: 180px;
-      height: 180px;
+      width: 90vw;
+      max-width: 600px;
+      height: 45vw;
+      max-height: 60vh;
+      min-height: 180px;
       object-fit: contain;
-      border-radius: 18px;
+      border-radius: 32px;
       background: #f8ffae;
-      box-shadow: 0 2px 10px #43c6ac33;
-      margin-bottom: 24px;
-      border: 2px solid #43c6ac44;
+      box-shadow: 0 4px 24px #43c6ac33;
+      margin-bottom: 4vh;
+      border: 3px solid #43c6ac44;
       cursor: pointer;
       transition: box-shadow 0.2s;
-    }
-    .word-img:hover {
-      box-shadow: 0 4px 20px #ffcb0580;
+      display: block;
     }
     .word {
-      font-size: 2.2em;
+      font-size: 2.7em;
       font-weight: 900;
       color: #43c6ac;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
+      letter-spacing: 3px;
+      margin-bottom: 3vh;
       text-shadow: 0 2px 6px #fff7;
+      text-align: center;
+      user-select: none;
     }
-    .chinese {
-      font-size: 1.5em;
-      color: #ff6f61;
-      margin-bottom: 24px;
-      font-weight: 700;
-      letter-spacing: 2px;
+    .button-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 5vw;
+      width: 100%;
+      margin-bottom: 2vh;
     }
-    .speak-btn {
+    .speak-btn, .next-btn {
+      flex: 1 1 0;
       background: linear-gradient(90deg, #43c6ac 60%, #ffcb05 100%);
       color: #fff;
       border: none;
-      border-radius: 16px;
-      padding: 14px 32px;
-      font-size: 1.2em;
+      border-radius: 18px;
+      padding: 2vh 0;
+      font-size: 1.6em;
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 3px 12px rgba(67,198,172,0.15);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
+      margin: 0 1vw;
+      min-width: 100px;
+      max-width: 220px;
     }
-    .speak-btn:hover {
+    .speak-btn:hover, .next-btn:hover {
       background: linear-gradient(90deg, #ff6f61 60%, #43c6ac 100%);
-    }
-    .next-btn {
-      background: #ffcb05;
-      color: #2d3e50;
-      border: none;
-      border-radius: 12px;
-      padding: 12px 28px;
-      font-size: 1.1em;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 2px 8px #43c6ac33;
-      margin-top: 18px;
-      transition: background 0.2s;
-    }
-    .next-btn:hover {
-      background: #43c6ac;
       color: #fff;
     }
     .back-btn {
       position: fixed;
-      left: 24px;
-      bottom: 24px;
+      left: 4vw;
+      bottom: 4vw;
       background: linear-gradient(90deg, #43c6ac 60%, #ffcb05 100%);
       color: #fff;
       border: none;
-      border-radius: 14px;
-      padding: 12px 30px;
-      font-size: 1.1em;
+      border-radius: 16px;
+      padding: 1.2em 2.2em;
+      font-size: 1.2em;
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 2px 8px #43c6ac33;
@@ -115,35 +109,32 @@
       color: #fff;
     }
     @media (max-width: 600px) {
-      .container { padding: 16px 4vw; }
-      .word-img { width: 120px; height: 120px; }
-      .word { font-size: 1.5em; }
-      .chinese { font-size: 1.1em; }
-      .back-btn { padding: 10px 20px; font-size: 1em; left: 8px; bottom: 8px; }
+      .word-img {
+        width: 96vw;
+        height: 40vw;
+        min-height: 120px;
+        border-radius: 16px;
+      }
+      .word { font-size: 2em; }
+      .speak-btn, .next-btn { font-size: 1.15em; border-radius: 13px; min-width: 80px; }
+      .back-btn { padding: 0.8em 1.2em; font-size: 1em; left: 2vw; bottom: 2vw; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <img id="img" class="word-img" src="" alt="Word image" title="Click for another image" onclick="refreshImage()" />
+    <img id="img" class="word-img" src="" alt="Word image" title="Tap for another image" onclick="refreshImage()" />
     <div id="word" class="word">Loading...</div>
-    <div id="chinese" class="chinese"></div>
-    <button class="speak-btn" onclick="playAudio()">🔊 Read</button>
-    <button class="next-btn" onclick="nextWord()">Next</button>
+    <div class="button-row">
+      <button class="speak-btn" onclick="playAudio()">🔊 Read</button>
+      <button class="next-btn" onclick="nextWord()">Next</button>
+    </div>
   </div>
   <button class="back-btn" onclick="window.location.href='english.html'">Back</button>
   <script>
     // Pixabay API key (your own)
     const PIXABAY_API_KEY = '51156726-a892553f5c5b08e75212aac04';
-
-    // Example Chinese mapping (expand as needed)
-    const chineseMap = {
-      "able": "能夠",
-      "active": "活躍的",
-      "afraid": "害怕的",
-      // Add more as needed
-    };
 
     let wordList = [];
     let currentIndex = 0;
@@ -164,7 +155,6 @@
       wordList = allWords.filter(w => String(w.catid) === String(catid));
       if (wordList.length === 0) {
         document.getElementById('word').textContent = "No words for this category";
-        document.getElementById('chinese').textContent = "";
         document.getElementById('img').src = "";
         return;
       }
@@ -198,7 +188,6 @@
       currentWord = wordObj.wordid;
       const cleanWord = getCleanWord(currentWord);
       document.getElementById('word').textContent = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1);
-      document.getElementById('chinese').textContent = chineseMap[cleanWord.toLowerCase()] || "";
 
       // Load image
       const imgUrl = await fetchImage(currentWord, imagePage);

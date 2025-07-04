@@ -74,27 +74,28 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      gap: 5vw;
+      gap: 3vw;
       width: 100%;
       margin-bottom: 2vh;
+      flex-wrap: wrap;
     }
-    .speak-btn, .next-btn {
+    .speak-btn, .next-btn, .speak-btn-cn, .speak-btn-tw {
       flex: 1 1 0;
       background: linear-gradient(90deg, #43c6ac 60%, #ffcb05 100%);
       color: #fff;
       border: none;
       border-radius: 18px;
       padding: 2vh 0;
-      font-size: 1.6em;
+      font-size: 1.3em;
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 3px 12px rgba(67,198,172,0.15);
       transition: background 0.2s, color 0.2s;
-      margin: 0 1vw;
+      margin: 0 1vw 1vw 1vw;
       min-width: 100px;
       max-width: 220px;
     }
-    .speak-btn:hover, .next-btn:hover {
+    .speak-btn:hover, .next-btn:hover, .speak-btn-cn:hover, .speak-btn-tw:hover {
       background: linear-gradient(90deg, #ff6f61 60%, #43c6ac 100%);
       color: #fff;
     }
@@ -127,7 +128,7 @@
       }
       .word { font-size: 2em; }
       .chinese { font-size: 1.2em; }
-      .speak-btn, .next-btn { font-size: 1.15em; border-radius: 13px; min-width: 80px; }
+      .speak-btn, .next-btn, .speak-btn-cn, .speak-btn-tw { font-size: 1em; border-radius: 13px; min-width: 80px; }
       .back-btn { padding: 0.8em 1.2em; font-size: 1em; left: 2vw; bottom: 2vw; }
     }
   </style>
@@ -139,7 +140,9 @@
     <div id="word" class="word">Loading...</div>
     <div id="chinese" class="chinese"></div>
     <div class="button-row">
-      <button class="speak-btn" onclick="playAudio()">🔊 Read</button>
+      <button class="speak-btn" onclick="playAudio()">🔊 Read (English)</button>
+      <button class="speak-btn-cn" onclick="playChinese('zh-HK')">🔊 Read (粵語)</button>
+      <button class="speak-btn-tw" onclick="playChinese('zh-CN')">🔊 Read (普通話)</button>
       <button class="next-btn" onclick="nextWord()">Next</button>
     </div>
   </div>
@@ -150,6 +153,7 @@
     let currentIndex = 0;
     let audioUrl = null;
     let currentWord = '';
+    let currentChinese = '';
     let imagePage = 1;
 
     function getCatId() {
@@ -159,7 +163,7 @@
 
     async function loadWordList() {
       const catid = getCatId();
-      const res = await fetch('https://kingstonkwong.github.io/KingstonKwong/eng.json');
+      const res = await fetch('https://kingstonkwong.github.io/KingstonKwong/eng1.json');
       const allWords = await res.json();
       wordList = allWords.filter(w => String(w.catid) === String(catid));
       if (wordList.length === 0) {
@@ -191,38 +195,15 @@
       return 'https://cdn.pixabay.com/photo/2017/01/31/13/14/apple-2023404_1280.png';
     }
 
-    async function translateToChinese(text) {
-      try {
-        const res = await fetch("https://libretranslate.com/translate", {
-          method: "POST",
-          body: JSON.stringify({
-            q: text,
-            source: "en",
-            target: "zh",
-            format: "text"
-          }),
-          headers: { "Content-Type": "application/json" }
-        });
-        const data = await res.json();
-        return data.translatedText;
-      } catch (e) {
-        return "";
-      }
-    }
-
     async function displayWord(idx) {
       imagePage = 1;
       const wordObj = wordList[idx];
       if (!wordObj) return;
       currentWord = wordObj.wordid;
+      currentChinese = (wordObj.cwordid || '').trim();
       const cleanWord = getCleanWord(currentWord);
       document.getElementById('word').textContent = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1);
-
-      // Auto-translate to Chinese
-      document.getElementById('chinese').textContent = "翻譯中...";
-      translateToChinese(cleanWord).then(translated => {
-        document.getElementById('chinese').textContent = translated;
-      });
+      document.getElementById('chinese').textContent = currentChinese;
 
       // Load image
       const imgUrl = await fetchImage(currentWord, imagePage);
@@ -255,6 +236,25 @@
       }
     }
 
+    function playChinese(lang) {
+      // lang: 'zh-HK' for Cantonese, 'zh-CN' for Mandarin
+      const chinese = document.getElementById('chinese').textContent;
+      if ('speechSynthesis' in window && chinese) {
+        const utter = new SpeechSynthesisUtterance(chinese);
+        utter.lang = lang;
+        // Try to select a voice for the language
+        const voices = window.speechSynthesis.getVoices();
+        let voice = null;
+        if (lang === 'zh-HK') {
+          voice = voices.find(v => v.lang === 'zh-HK' || v.lang === 'yue-HK');
+        } else if (lang === 'zh-CN') {
+          voice = voices.find(v => v.lang === 'zh-CN' || v.lang === 'cmn-CN');
+        }
+        if (voice) utter.voice = voice;
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
     function nextWord() {
       if (!wordList.length) return;
       let nextIdx;
@@ -271,7 +271,10 @@
       document.getElementById('img').src = imgUrl;
     }
 
-    // On page load
+    // On page load, ensure voices are loaded for speechSynthesis
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = function() {};
+    }
     loadWordList();
   </script>
 </body>

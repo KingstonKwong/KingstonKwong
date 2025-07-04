@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>P1 English Word Trainer</title>
+  <title>P1 English Word Trainer (Pexels + Unsplash)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <style>
     html, body {
@@ -148,6 +148,8 @@
   </div>
   <button class="back-btn" onclick="window.location.href='english.html'">Back</button>
   <script>
+    // Replace with your own Pexels API key
+    const PEXELS_API_KEY = 'fPCMoA0a9serviSHNXaQXJlRuJfCsUh0VVeDmVH8a38pOheAUNv7Mau2';
     const PIXABAY_API_KEY = '51156726-a892553f5c5b08e75212aac04';
     let wordList = [];
     let currentIndex = 0;
@@ -155,6 +157,7 @@
     let currentWord = '';
     let currentChinese = '';
     let imagePage = 1;
+    let lastApiUsed = 'pexels';
 
     function getCatId() {
       const params = new URLSearchParams(window.location.search);
@@ -180,19 +183,63 @@
       return word.replace(/\s*\d+$/, '').trim();
     }
 
-    async function fetchImage(word, page = 1) {
-      const cleanWord = getCleanWord(word);
-      const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(cleanWord)}&image_type=photo&safesearch=true&per_page=3&page=${page}`;
+    async function fetchPexelsImage(word) {
       try {
-        const res = await fetch(url);
+        const cleanWord = getCleanWord(word);
+        const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(cleanWord)}&per_page=5&page=${imagePage}`, {
+          headers: { Authorization: PEXELS_API_KEY }
+        });
         const data = await res.json();
-        if (data.hits && data.hits.length > 0) {
-          const img = data.hits[Math.floor(Math.random() * data.hits.length)];
-          return img.webformatURL;
+        if (data.photos && data.photos.length > 0) {
+          const img = data.photos[Math.floor(Math.random() * data.photos.length)];
+          return img.src.large || img.src.medium || img.src.original;
         }
       } catch (e) {}
-      // fallback image
-      return 'https://cdn.pixabay.com/photo/2017/01/31/13/14/apple-2023404_1280.png';
+      return null;
+    }
+
+    async function fetchUnsplashImage(word) {
+      try {
+        const cleanWord = getCleanWord(word);
+        // Unsplash random image for the word, with content filter
+        const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cleanWord)}&per_page=5&content_filter=high&client_id=YOUR_UNSPLASH_ACCESS_KEY&page=${imagePage}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.results && data.results.length > 0) {
+          const img = data.results[Math.floor(Math.random() * data.results.length)];
+          return img.urls.regular || img.urls.small || img.urls.full;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    async function fetchImage(word, page = 1) {
+      // Try Pexels first, then Unsplash as fallback, then Pixabay as last fallback
+      let imgUrl = await fetchPexelsImage(word);
+      lastApiUsed = 'pexels';
+      if (!imgUrl) {
+        imgUrl = await fetchUnsplashImage(word);
+        lastApiUsed = 'unsplash';
+      }
+      if (!imgUrl) {
+        // Fallback to Pixabay
+        const cleanWord = getCleanWord(word);
+        const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(cleanWord)}&image_type=photo&safesearch=true&per_page=3&page=${page}`;
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          if (data.hits && data.hits.length > 0) {
+            const img = data.hits[Math.floor(Math.random() * data.hits.length)];
+            imgUrl = img.webformatURL;
+            lastApiUsed = 'pixabay';
+          }
+        } catch (e) {}
+      }
+      if (!imgUrl) {
+        imgUrl = 'https://cdn.pixabay.com/photo/2017/01/31/13/14/apple-2023404_1280.png';
+        lastApiUsed = 'fallback';
+      }
+      return imgUrl;
     }
 
     async function displayWord(idx) {

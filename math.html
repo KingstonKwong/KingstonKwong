@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>P1 Maths Trainer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet" />
   <style>
     html, body {
       height: 100%;
@@ -22,6 +22,7 @@
       justify-content: stretch;
       box-sizing: border-box;
       position: relative;
+      padding: 0 5vw 5vh 5vw;
     }
     .bg-shape {
       position: absolute;
@@ -47,44 +48,12 @@
       min-height: 0;
       min-width: 0;
       padding: 0;
-      margin: 0;
-      width: 100vw;
-      height: 100vh;
+      margin: 0 auto;
+      max-width: 600px;
+      width: 100%;
       box-sizing: border-box;
       z-index: 1;
       position: relative;
-    }
-    .mode-row {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 2vw;
-      margin-bottom: 2vh;
-      margin-top: 3vh;
-    }
-    .mode-btn {
-      background: linear-gradient(90deg, #4fc3f7 60%, #039be5 100%);
-      color: #fff;
-      border: none;
-      border-radius: 18px;
-      padding: 1.2em 1.5em;
-      font-size: 1.3em;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 3px 12px rgba(3,155,229,0.15);
-      transition: background 0.2s, color 0.2s, transform 0.1s;
-      outline: none;
-      margin: 0 1vw;
-      min-width: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5em;
-    }
-    .mode-btn.selected, .mode-btn:active, .mode-btn:focus {
-      background: linear-gradient(90deg, #ffb74d 60%, #ffd54f 100%);
-      color: #039be5;
-      transform: scale(1.07);
     }
     .math-card {
       background: linear-gradient(120deg, #ffffff 70%, #e3f2fd 100%);
@@ -96,9 +65,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 92vw;
-      max-width: 500px;
-      min-height: 220px;
+      width: 100%;
+      min-height: 260px;
       position: relative;
       transition: box-shadow 0.2s, transform 0.15s;
       border: 5px solid #b3e5fc;
@@ -109,16 +77,43 @@
       60% { transform: scale(1.08);}
       100% { transform: scale(1);}
     }
-    .question {
-      font-size: 2.5em;
+    .question-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6vw;
+      width: 100%;
+      margin-bottom: 1vh;
+    }
+    .question-block {
+      flex: 1 1 0;
+      min-width: 140px;
+      text-align: center;
+      max-width: 50vw;
+    }
+    .question-horiz {
+      font-size: 2.8em;
       font-weight: 900;
       color: #039be5;
       letter-spacing: 2px;
-      margin: 2vh 0 1vh 0;
+      margin-bottom: 0.5em;
       text-shadow: 0 2px 6px #fff7, 0 1px 0 #fff;
-      text-align: center;
       user-select: none;
       line-height: 1.1;
+      white-space: nowrap;
+    }
+    .question-vert {
+      font-size: 2.8em;
+      font-weight: 900;
+      color: #039be5;
+      letter-spacing: 2px;
+      margin-bottom: 0.5em;
+      text-shadow: 0 2px 6px #fff7, 0 1px 0 #fff;
+      user-select: none;
+      line-height: 1.1;
+      font-family: monospace;
+      white-space: pre-line;
     }
     .input-row {
       display: flex;
@@ -130,7 +125,7 @@
       width: 100%;
     }
     .answer-input {
-      font-size: 2em;
+      font-size: 2.2em;
       border-radius: 12px;
       border: 2px solid #81d4fa;
       padding: 0.3em 0.7em;
@@ -143,9 +138,18 @@
       box-shadow: 0 2px 8px #b3e5fc33;
       outline: none;
       transition: border 0.2s;
+      max-length: 3;
     }
     .answer-input:focus {
       border: 2.5px solid #039be5;
+    }
+    .answer-input::-webkit-inner-spin-button,
+    .answer-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .answer-input[maxlength] {
+      ime-mode: disabled;
     }
     .check-btn {
       background: linear-gradient(90deg, #4fc3f7 60%, #039be5 100%);
@@ -153,7 +157,7 @@
       border: none;
       border-radius: 14px;
       padding: 0.7em 1.5em;
-      font-size: 1.2em;
+      font-size: 1.3em;
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 3px 12px rgba(3,155,229,0.15);
@@ -170,7 +174,7 @@
       transform: scale(1.07);
     }
     .result {
-      font-size: 1.5em;
+      font-size: 1.6em;
       font-weight: 800;
       margin: 1vh 0 0 0;
       min-height: 2em;
@@ -238,13 +242,12 @@
     .back-btn .icon { margin: 0; }
     @media (max-width: 600px) {
       .math-card { border-radius: 18px; }
-      .question { font-size: 1.5em; }
-      .answer-input { font-size: 1.2em; width: 60px; }
+      .question-horiz, .question-vert { font-size: 1.5em; }
+      .answer-input { font-size: 1.3em; width: 60px; }
       .check-btn { font-size: 1em; border-radius: 10px; }
       .result { font-size: 1em; }
       .next-btn { width: 48px; height: 48px; min-width: 48px; min-height: 48px; font-size: 1.3em; }
       .back-btn { width: 44px; height: 44px; font-size: 1.2em; left: 2vw; bottom: 2vw; }
-      .mode-btn { font-size: 1em; border-radius: 13px; min-width: 80px; padding: 0.7em 1em;}
     }
   </style>
 </head>
@@ -254,14 +257,17 @@
   <div class="bg-shape bg-shape3"></div>
   <div class="bg-shape bg-shape4"></div>
   <div class="container">
-    <div class="mode-row">
-      <button id="btn20" class="mode-btn selected" onclick="setMode('0-20')">0-20</button>
-      <button id="btn100" class="mode-btn" onclick="setMode('0-100')">0-100</button>
-    </div>
     <div class="math-card">
-      <div id="question" class="question">Loading...</div>
+      <div class="question-row">
+        <div class="question-block"><br><br><br><br><br><br>
+          <div id="question-horiz" class="question-horiz" align="center-left" >Loading...</div>
+        </div>
+        <div class="question-block">
+          <div id="question-vert" class="question-vert"></div>
+        </div>
+      </div>
       <div class="input-row">
-        <input id="answer" class="answer-input" type="number" autocomplete="off" inputmode="numeric" />
+        <input id="answer" class="answer-input" type="number" autocomplete="off" inputmode="numeric" maxlength="3" />
         <button class="check-btn" onclick="checkAnswer()">
           <span class="icon">✅</span>Check
         </button>
@@ -276,7 +282,6 @@
     <span class="icon">🏠</span>
   </button>
   <script>
-    let mode = "0-20"; // default
     let currentQuestion = {};
     let lastQuestion = {};
 
@@ -285,44 +290,59 @@
     }
 
     function generateQuestion() {
-      let min = 0, max = (mode === "0-20" ? 20 : 100);
+      const min = 0, max = 20;
       let op, a, b, answer;
-      // Randomly pick addition or subtraction
       if (Math.random() < 0.5) {
         op = "+";
-        // For addition: ensure a + b <= max
         a = randomInt(min, max);
         b = randomInt(min, max - a);
         answer = a + b;
       } else {
         op = "-";
-        // For subtraction: ensure a - b >= 0 and <= max
-        answer = randomInt(min, max);
-        b = randomInt(min, answer);
-        a = answer + b;
+        a = randomInt(min, max);
+        b = randomInt(min, a);
+        answer = a - b;
       }
       return { a, b, op, answer };
     }
 
     function showQuestion(q) {
-      document.getElementById('question').textContent = `${q.a} ${q.op} ${q.b} = ?`;
-      document.getElementById('answer').value = '';
-      document.getElementById('result').textContent = '';
-      document.getElementById('result').className = 'result';
-      document.getElementById('answer').focus();
+      // Horizontal format
+      document.getElementById('question-horiz').textContent = `${q.a} ${q.op} ${q.b} = ?`;
+      // Vertical format
+      document.getElementById('question-vert').innerHTML = `
+        <div style="text-align:right; font-family: monospace; line-height:1.3;">
+          ${q.a}<br>
+          ${q.op} ${q.b}<br>
+          <hr style="border:1.5px solid #039be5; margin:4px 0;">
+          ?
+        </div>
+      `;
+      const answerInput = document.getElementById('answer');
+      answerInput.value = '';
+      answerInput.maxLength = 3;
+      answerInput.focus();
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = '';
+      resultDiv.className = 'result';
     }
 
     function checkAnswer() {
-      const userAns = document.getElementById('answer').value.trim();
+      const answerInput = document.getElementById('answer');
+      let userAns = answerInput.value.trim();
+      if (userAns.length > 3) userAns = userAns.slice(0, 3);
+      answerInput.value = userAns;
       if (userAns === "") return;
-      const correct = Number(userAns) === currentQuestion.answer;
       const resultDiv = document.getElementById('result');
-      if (correct) {
+      if (Number(userAns) === currentQuestion.answer) {
         resultDiv.textContent = "🎉 Correct!";
         resultDiv.className = "result";
       } else {
-        resultDiv.textContent = `❌ Try again!`;
+        resultDiv.innerHTML = `❌ Try again! <span style="color:#e53935;font-size:1.2em;">(${userAns})</span>`;
         resultDiv.className = "result wrong";
+        // Clear input and focus for easy retry
+        answerInput.value = '';
+        answerInput.focus();
       }
     }
 
@@ -339,19 +359,14 @@
       showQuestion(currentQuestion);
     }
 
-    function setMode(newMode) {
-      if (mode === newMode) return;
-      mode = newMode;
-      document.getElementById('btn20').classList.toggle('selected', mode === '0-20');
-      document.getElementById('btn100').classList.toggle('selected', mode === '0-100');
+    document.addEventListener('DOMContentLoaded', () => {
       nextQuestion();
-    }
-
-    // Enter key submits answer
-    document.addEventListener('DOMContentLoaded', function() {
-      nextQuestion();
-      document.getElementById('answer').addEventListener('keydown', function(e) {
+      const input = document.getElementById('answer');
+      input.addEventListener('keydown', e => {
         if (e.key === 'Enter') checkAnswer();
+      });
+      input.addEventListener('input', function() {
+        if (this.value.length > 3) this.value = this.value.slice(0, 3);
       });
     });
   </script>

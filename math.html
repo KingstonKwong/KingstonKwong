@@ -49,7 +49,7 @@
       min-width: 0;
       padding: 0;
       margin: 0 auto;
-      max-width: 600px;
+      max-width: 480px;
       width: 100%;
       box-sizing: border-box;
       z-index: 1;
@@ -66,7 +66,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      min-height: 260px;
+      min-height: 320px;
       position: relative;
       transition: box-shadow 0.2s, transform 0.15s;
       border: 5px solid #b3e5fc;
@@ -77,51 +77,64 @@
       60% { transform: scale(1.08);}
       100% { transform: scale(1);}
     }
+    .question-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2vh;
+    }
     .question-row {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: flex-start;
-      gap: 6vw;
+      gap: 7vw;
       width: 100%;
       margin-bottom: 1vh;
     }
     .question-block {
       flex: 1 1 0;
-      min-width: 130px;
-      text-align: left;
-      max-width: 50vw;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+      min-width: 120px;
+      text-align: center;
     }
     .question-horiz {
-      font-size: 3em;
+      font-size: 3.2em;
       font-weight: 900;
       color: #039be5;
-      letter-spacing: 2px;
+      letter-spacing: 4px;
       margin-bottom: 0.5em;
-      text-shadow: 0 2px 6px #fff7, 0 1px 0 #fff;
+      text-shadow: 0 2px 8px #fff7, 0 1px 0 #fff;
       user-select: none;
       line-height: 1.1;
       white-space: nowrap;
-      text-align: left;
-      min-width: 2.5em;
-      padding-left: 0.3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 1.4em;
     }
     .question-vert {
-      font-size: 3em;
+      font-size: 3.2em;
       font-weight: 900;
       color: #039be5;
-      letter-spacing: 2px;
+      letter-spacing: 4px;
       margin-bottom: 0.5em;
-      text-shadow: 0 2px 6px #fff7, 0 1px 0 #fff;
+      text-shadow: 0 2px 8px #fff7, 0 1px 0 #fff;
       user-select: none;
       line-height: 1.1;
       font-family: monospace;
       white-space: pre-line;
-      text-align: right;
       min-width: 2.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .question-vert .opline {
+      border-top: 4px solid #039be5;
+      width: 1.7em;
+      margin: 0.2em 0 0.1em 0;
     }
     .input-row {
       display: flex;
@@ -165,7 +178,7 @@
       border: none;
       border-radius: 14px;
       padding: 0.7em 1.5em;
-      font-size: 1.3em;
+      font-size: 1.2em;
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 3px 12px rgba(3,155,229,0.15);
@@ -182,10 +195,10 @@
       transform: scale(1.07);
     }
     .result {
-      font-size: 1.6em;
+      font-size: 1.7em;
       font-weight: 800;
-      margin: 1vh 0 0 0;
-      min-height: 2em;
+      margin: 2vh 0 0 0;
+      min-height: 2.2em;
       text-align: center;
       color: #43a047;
       text-shadow: 0 1px 0 #fff, 0 2px 4px #fff8;
@@ -193,6 +206,12 @@
     }
     .result.wrong {
       color: #e53935;
+    }
+    .wrong-answer {
+      font-size: 1.1em;
+      color: #e53935;
+      margin-left: 0.4em;
+      font-weight: 600;
     }
     .next-btn {
       background: linear-gradient(135deg, #ffb74d 60%, #ffd54f 100%);
@@ -250,14 +269,12 @@
     .back-btn .icon { margin: 0; }
     @media (max-width: 600px) {
       .math-card { border-radius: 18px; }
-      .question-horiz, .question-vert { font-size: 1.5em; }
-      .answer-input { font-size: 1.3em; width: 60px; }
+      .question-horiz, .question-vert { font-size: 1.6em; }
+      .answer-input { font-size: 1.2em; width: 60px; }
       .check-btn { font-size: 1em; border-radius: 10px; }
       .result { font-size: 1em; }
       .next-btn { width: 48px; height: 48px; min-width: 48px; min-height: 48px; font-size: 1.3em; }
       .back-btn { width: 44px; height: 44px; font-size: 1.2em; left: 2vw; bottom: 2vw; }
-      .question-row { gap: 2vw; }
-      .question-block { min-width: 80px; }
     }
   </style>
 </head>
@@ -268,13 +285,14 @@
   <div class="bg-shape bg-shape4"></div>
   <div class="container">
     <div class="math-card">
-      <div class="question-row">
-        <div class="question-block" style="justify-content:flex-start; align-items:center; display:flex;">
-		
-          <div id="question-horiz" class="question-horiz" style="text-align:bottom;"></div>
-        </div>
-        <div class="question-block" style="justify-content:flex-end; align-items:center; display:flex;">
-          <div id="question-vert" class="question-vert"></div>
+      <div class="question-area">
+        <div class="question-row">
+          <div class="question-block">
+            <div id="question-horiz" class="question-horiz"></div>
+          </div>
+          <div class="question-block">
+            <div id="question-vert" class="question-vert"></div>
+          </div>
         </div>
       </div>
       <div class="input-row">
@@ -318,16 +336,14 @@
     }
 
     function showQuestion(q) {
-      // Horizontal format (left-aligned)
+      // Horizontal format
       document.getElementById('question-horiz').textContent = `${q.a} ${q.op} ${q.b} = ?`;
-      // Vertical format (right-aligned)
+      // Vertical format
       document.getElementById('question-vert').innerHTML =
-        `<div style="text-align:right; font-family: monospace; line-height:1.3;">
-          ${q.a}<br>
-          ${q.op} ${q.b}<br>
-          <hr style="border:1.5px solid #039be5; margin:4px 0;">
-          ?
-        </div>`;
+        `<span style="display:block; min-width:2.2em; text-align:right;">${q.a}</span>
+         <span style="display:block; min-width:2.2em; text-align:right;">${q.op} ${q.b}</span>
+         <span class="opline"></span>
+         <span style="display:block; min-width:2.2em; text-align:right;">?</span>`;
       const answerInput = document.getElementById('answer');
       answerInput.value = '';
       answerInput.maxLength = 3;
@@ -348,9 +364,8 @@
         resultDiv.textContent = "🎉 Correct!";
         resultDiv.className = "result";
       } else {
-        resultDiv.innerHTML = `❌ Try again! <span style="color:#e53935;font-size:1.2em;">(${userAns})</span>`;
+        resultDiv.innerHTML = `❌ Try again! <span class="wrong-answer">(${userAns})</span>`;
         resultDiv.className = "result wrong";
-        // Clear input and focus for easy retry
         answerInput.value = '';
         answerInput.focus();
       }
